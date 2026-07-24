@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mzashah.github.io/babycam-play/sitemap.xml
