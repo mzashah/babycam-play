@@ -55,14 +55,14 @@
 <div class="wrap">
   <div class="sheet">
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 25 July 2026 · Play Store app: <strong>BabyCam</strong> · Developer: Zuhaib Ali Shah</p>
+    <p class="meta">Last updated: 28 August 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
 
     <div class="callout">
       <strong>In short:</strong> BabyCam turns two of your own phones into a baby monitor. Live video and
       audio go <strong>directly between your two devices</strong>, end-to-end encrypted — we never see,
       upload, or store them. There are <strong>no accounts and no sign-up</strong>, and we never sell your
-      data. We use Google Firebase for anonymous usage analytics and crash diagnostics to keep the app
-      reliable.
+      data. We use Google Firebase for anonymous usage analytics and crash diagnostics, and
+      <strong>Google Mobile Ads</strong> may show ads on <strong>parent-side screens only</strong>.
     </div>
 
     <h2>1. Who we are</h2>
@@ -136,6 +136,8 @@
         <td>Deliver a user-visible wake/resume notification to a paired baby device</td></tr>
       <tr><td>Firebase Remote Config</td><td>Configuration fetch and associated Firebase installation data</td>
         <td>Adjust connectivity settings without an app update</td></tr>
+      <tr><td>Google Mobile Ads / AdMob</td><td>Device and ad identifiers, consent choices, and ad
+        delivery signals</td><td>Show ads on parent-side screens and comply with consent rules</td></tr>
       <tr><td>This website</td><td>Google Analytics 4 records anonymous page visits</td>
         <td>Understand site usage</td></tr>
     </table></div>
@@ -144,7 +146,27 @@
     of this data is governed by <a href="https://firebase.google.com/support/privacy" rel="noopener">Google's
     privacy terms</a>.</p>
 
-    <h2>8. Permissions we request</h2>
+    <h2>8. Ads (Google Mobile Ads)</h2>
+    <ul>
+      <li>Ads may appear on <strong>parent-side screens only</strong>: the parent home/baby-list screen,
+      the parent live monitoring screen, and a capped full-screen ad shown before opening a saved baby
+      from the list (not on every tap).</li>
+      <li>We do <strong>not</strong> place ads on the baby device screen, pairing, permissions, app lock,
+      settings content, notifications, or the background monitoring flow.</li>
+      <li>Google Mobile Ads may process device identifiers, advertising identifiers, consent choices, and
+      ad delivery signals to serve and measure ads.</li>
+      <li>Your live camera, microphone audio, snapshots, recordings, pairing code, and room secret are
+      <strong>not</strong> sent to Google Mobile Ads.</li>
+      <li>Where required, the app shows Google's consent/privacy options flow (UMP). You may also see an
+      <strong>Ad privacy choices</strong> entry in Settings when Google requires that option for your
+      region.</li>
+    </ul>
+    <p>Google explains how its advertising partners handle data at
+    <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">Google's partner
+    sites policy</a>. Our authorized seller file is published at
+    <a href="app-ads.txt">app-ads.txt</a>.</p>
+
+    <h2>9. Permissions we request</h2>
     <div class="tw"><table>
       <tr><th>Permission</th><th>Purpose</th></tr>
       <tr><td>Camera</td><td>Baby-mode video (baby device only)</td></tr>
@@ -156,9 +178,9 @@
       <tr><td>Biometric</td><td>Optional app lock (stays on device)</td></tr>
     </table></div>
 
-    <h2>9. Third-party services</h2>
-    <p>For transparency, BabyCam relies on these services purely for connectivity and diagnostics — none
-    of them receive your video or audio:</p>
+    <h2>10. Third-party services</h2>
+    <p>For transparency, BabyCam relies on these services for connectivity, diagnostics, and (on the
+    parent device only) advertising — none of them receive your live video or audio:</p>
     <ul>
       <li><strong>HiveMQ</strong> — relays encrypted connection-setup/control messages and TLS-protected
       pairing/push-token messages.</li>
@@ -166,10 +188,12 @@
       forwards wake pushes.</li>
       <li><strong>Google Firebase / Cloud Messaging</strong> — analytics, crash reporting, remote
       configuration, Firebase installation identifiers, and wake pushes.</li>
+      <li><strong>Google Mobile Ads / AdMob</strong> — parent-side banner and interstitial ads, consent
+      management, and ad measurement (no monitored media).</li>
       <li><strong>Google Analytics</strong> — anonymous page-visit counts for this website only.</li>
     </ul>
 
-    <h2>10. Data retention &amp; deletion</h2>
+    <h2>11. Data retention &amp; deletion</h2>
     <ul>
       <li>Audio/video is never retained — it is not stored anywhere.</li>
       <li>Pairing data, the paired device's FCM token, and settings live on your device. Clearing a
@@ -179,11 +203,11 @@
       the relevant provider where technically applicable.</li>
     </ul>
 
-    <h2>11. Children's privacy</h2>
+    <h2>12. Children's privacy</h2>
     <p>BabyCam is a tool for parents and guardians. It is not directed at children as users and does not
     knowingly collect personal information from children. The camera simply serves the caregiver.</p>
 
-    <h2>12. Changes to this policy</h2>
+    <h2>13. Changes to this policy</h2>
     <p>We may update this policy as the app evolves; material changes will be reflected by the "Last
     updated" date above.</p>
   </div>
