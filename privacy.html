@@ -55,7 +55,7 @@
 <div class="wrap">
   <div class="sheet">
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 28 August 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
+    <p class="meta">Last updated: 19 October 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
 
     <div class="callout">
       <strong>In short:</strong> BabyCam turns two of your own phones into a baby monitor. Live video and
@@ -81,15 +81,25 @@
       indicator only shows while talk/listen is actually active).</li>
       <li>Any <strong>snapshots</strong> or <strong>video clips</strong> you choose to save are written
       only to <strong>your own device's local gallery/storage</strong> — never to us.</li>
+      <li><strong>Video calls:</strong> during a video call the parent's camera and microphone are also
+      sent to the baby device over the same encrypted peer-to-peer path. Nothing about a call is
+      recorded or stored by us.</li>
+      <li><strong>Recording on the baby phone (optional):</strong> only after it is allowed on the baby
+      phone itself, a connected parent can start a recording there. Clips are saved only in the
+      app's private storage <strong>on the baby phone</strong> (with a visible recording notification and
+      a Stop button), and a parent can download them over the encrypted peer-to-peer connection.
+      Recordings are never uploaded to us or to any cloud.</li>
     </ul>
 
-    <h2>3. Two-way talk, remote control, lullabies &amp; alerts</h2>
+    <h2>3. Two-way talk, remote control &amp; alerts</h2>
     <ul>
       <li>Two-way talk sends the parent's microphone audio to the baby device (same encrypted P2P path).
-      Remote controls (toggle the baby's camera/mic/flashlight, flip camera, play a lullaby or a chime,
+      Remote controls (toggle the baby's camera/mic/flashlight, flip camera, ring a chime,
       trigger the low-battery alert) are short encrypted control messages — they carry no media and
       nothing is stored by us.</li>
-      <li>Lullabies / white-noise are generated on the baby device; no audio files are uploaded.</li>
+      <li>The chime is generated on the baby device; no audio files are uploaded.</li>
+      <li><strong>Cry alerts</strong> are detected on the baby device; only a short alert message is
+      sent to the parent — no audio is uploaded.</li>
     </ul>
 
     <h2>4. Pairing &amp; connection data</h2>
@@ -99,9 +109,9 @@
       alone can never decrypt your media. Pairing information is stored <strong>only on your
       devices</strong>.</li>
       <li>To help the two phones find each other, connection-setup ("signaling") messages pass through
-      a third-party message broker (HiveMQ). Media-setup and control messages are additionally
-      <strong>AES-256-GCM encrypted</strong> by the app. Limited pairing and push-token messages use the
-      broker only over TLS; they contain no audio or video.</li>
+      <strong>Google Firebase Realtime Database</strong> (older pairings may still use the HiveMQ message
+      broker). Media-setup and control messages are additionally <strong>AES-256-GCM encrypted</strong> by
+      the app; they contain no audio or video and are only used while the phones connect.</li>
       <li>When the two phones are on different networks, media may be relayed through a TURN server
       (Cloudflare, with Metered as a fallback) purely to traverse firewalls. Relayed media stays
       end-to-end encrypted; the relay cannot read it.</li>
@@ -114,6 +124,10 @@
     the wake request to Google FCM. The token is used only to deliver a BabyCam resume notification; it
     never reveals audio or video. The notification requires the caregiver to tap it before BabyCam
     resumes monitoring.</p>
+    <p><strong>Video call from the baby phone:</strong> when a parent connects, the parent device shares
+    its FCM registration token with the paired baby device (up to three parent devices are kept, only on
+    that baby device). When someone starts a video call on the baby phone, it uses the same Cloudflare
+    Worker to send a push that opens the call on the parent phone. The token is used for nothing else.</p>
 
     <h2>6. App lock</h2>
     <ul>
@@ -174,6 +188,8 @@
       <tr><td>Notifications</td><td>The ongoing-monitor notification, alerts, and wake/resume notification</td></tr>
       <tr><td>Foreground service (camera / microphone / media)</td><td>Keep monitoring while the screen is off</td></tr>
       <tr><td>Run at startup / ignore battery optimizations</td><td>Support reliable monitoring after reboot or background restriction</td></tr>
+      <tr><td>Display over other apps (optional)</td><td>Only if you turn on "Open calls automatically": lets a video call from your other phone open on screen by itself, even when the phone is locked. Never used to draw over other apps.</td></tr>
+      <tr><td>Home-screen widget / quick-settings tile (optional)</td><td>One-tap "Call parent" from the baby phone. No extra data.</td></tr>
       <tr><td>Storage on Android 9 and earlier</td><td>Save user-requested recordings or snapshots to the device gallery</td></tr>
       <tr><td>Biometric</td><td>Optional app lock (stays on device)</td></tr>
     </table></div>
@@ -182,10 +198,11 @@
     <p>For transparency, BabyCam relies on these services for connectivity, diagnostics, and (on the
     parent device only) advertising — none of them receive your live video or audio:</p>
     <ul>
-      <li><strong>HiveMQ</strong> — relays encrypted connection-setup/control messages and TLS-protected
-      pairing/push-token messages.</li>
+      <li><strong>Google Firebase Realtime Database</strong> — passes encrypted connection-setup and
+      control messages between your two phones (no audio or video).</li>
+      <li><strong>HiveMQ</strong> — the same role for older pairings only.</li>
       <li><strong>Cloudflare</strong> — TURN relay for cross-network connections, and a small worker that
-      forwards wake pushes.</li>
+      forwards wake and video-call pushes.</li>
       <li><strong>Google Firebase / Cloud Messaging</strong> — analytics, crash reporting, remote
       configuration, Firebase installation identifiers, and wake pushes.</li>
       <li><strong>Google Mobile Ads / AdMob</strong> — parent-side banner and interstitial ads, consent
