@@ -55,7 +55,7 @@
 <div class="wrap">
   <div class="sheet">
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 19 October 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
+    <p class="meta">Last updated: 3 November 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
 
     <div class="callout">
       <strong>In short:</strong> BabyCam turns two of your own phones into a baby monitor. Live video and
@@ -97,6 +97,10 @@
       Remote controls (toggle the baby's camera/mic/flashlight, flip camera, ring a chime,
       trigger the low-battery alert) are short encrypted control messages — they carry no media and
       nothing is stored by us.</li>
+      <li>The parent can also change settings of the baby phone from the parent phone: reminders, keeping the
+      phone connected, resuming after a restart, opening calls automatically, night mode in calls, and whether
+      recording is allowed. These are short encrypted control messages, like the controls above. The baby phone
+      shows the current settings but cannot unpair a parent.</li>
       <li>The chime is generated on the baby device; no audio files are uploaded.</li>
       <li><strong>Cry alerts</strong> are detected on the baby device; only a short alert message is
       sent to the parent — no audio is uploaded.</li>
@@ -112,6 +116,14 @@
       <strong>Google Firebase Realtime Database</strong> (older pairings may still use the HiveMQ message
       broker). Media-setup and control messages are additionally <strong>AES-256-GCM encrypted</strong> by
       the app; they contain no audio or video and are only used while the phones connect.</li>
+      <li><strong>Status.</strong> So the parent can see whether the baby phone is online, the baby phone shares a
+      small status: online/offline, battery level, whether a session is active, and the app version. Firebase
+      signs the phone in <strong>anonymously</strong> for this (no account, no email), and the online marker is
+      removed automatically when the baby phone disconnects.</li>
+      <li><strong>More parents and names.</strong> Extra parents can be added with a one-time invite code. Each
+      parent phone has a display name (by default the phone's device name, which you can change). It is shown on
+      the baby phone's Parents screen and to the other parents so you can tell the phones apart. It is not an
+      account and is not used for anything else.</li>
       <li>When the two phones are on different networks, media may be relayed through a TURN server
       (Cloudflare, with Metered as a fallback) purely to traverse firewalls. Relayed media stays
       end-to-end encrypted; the relay cannot read it.</li>
@@ -120,7 +132,7 @@
     <h2>5. Remote wake (push)</h2>
     <p>When the parent detects that a paired baby device is offline, it can request a Firebase Cloud
     Messaging (FCM) push. The baby device's FCM registration token is stored on the paired parent
-    device, sent through HiveMQ over TLS, and posted over HTTPS to a Cloudflare Worker, which forwards
+    device, sent over TLS through the app's connection (Firebase, or HiveMQ for older pairings), and posted over HTTPS to a Cloudflare Worker, which forwards
     the wake request to Google FCM. The token is used only to deliver a BabyCam resume notification; it
     never reveals audio or video. The notification requires the caregiver to tap it before BabyCam
     resumes monitoring.</p>
@@ -155,7 +167,7 @@
       <tr><td>This website</td><td>Google Analytics 4 records anonymous page visits</td>
         <td>Understand site usage</td></tr>
     </table></div>
-    <p>We do <strong>not</strong> collect your name, email, contacts, precise location, or the content of
+    <p>We do <strong>not</strong> collect your real name, email, contacts, precise location, or the content of
     your video/audio. The 4-digit pairing code is <strong>not</strong> sent to Firebase. Google's handling
     of this data is governed by <a href="https://firebase.google.com/support/privacy" rel="noopener">Google's
     privacy terms</a>.</p>
@@ -165,6 +177,8 @@
       <li>Ads may appear on <strong>parent-side screens only</strong>: the parent home/baby-list screen,
       the parent live monitoring screen, and a capped full-screen ad shown before opening a saved baby
       from the list (not on every tap).</li>
+      <li>The parent can watch one short rewarded video to hide ads for a few hours. A native ad card may also
+      appear in the parent's baby list.</li>
       <li>We do <strong>not</strong> place ads on the baby device screen, pairing, permissions, app lock,
       settings content, notifications, or the background monitoring flow.</li>
       <li>Google Mobile Ads may process device identifiers, advertising identifiers, consent choices, and
@@ -180,7 +194,13 @@
     sites policy</a>. Our authorized seller file is published at
     <a href="app-ads.txt">app-ads.txt</a>.</p>
 
-    <h2>9. Permissions we request</h2>
+    <h2>9. Backup</h2>
+    <p>BabyCam allows Android's backup (Google backup and phone-to-phone transfer) for a small set of app data
+    only: your settings, your paired devices including their room secrets, and the parent list. This lets your
+    pairings come back after a reinstall or a new phone. Recordings, the Firebase sign-in, caches and ad data are
+    not included. You can turn this off in your phone's backup settings.</p>
+
+    <h2>10. Permissions we request</h2>
     <div class="tw"><table>
       <tr><th>Permission</th><th>Purpose</th></tr>
       <tr><td>Camera</td><td>Baby-mode video (baby device only)</td></tr>
@@ -194,7 +214,7 @@
       <tr><td>Biometric</td><td>Optional app lock (stays on device)</td></tr>
     </table></div>
 
-    <h2>10. Third-party services</h2>
+    <h2>11. Third-party services</h2>
     <p>For transparency, BabyCam relies on these services for connectivity, diagnostics, and (on the
     parent device only) advertising — none of them receive your live video or audio:</p>
     <ul>
@@ -210,7 +230,7 @@
       <li><strong>Google Analytics</strong> — anonymous page-visit counts for this website only.</li>
     </ul>
 
-    <h2>11. Data retention &amp; deletion</h2>
+    <h2>12. Data retention &amp; deletion</h2>
     <ul>
       <li>Audio/video is never retained — it is not stored anywhere.</li>
       <li>Pairing data, the paired device's FCM token, and settings live on your device. Clearing a
@@ -220,11 +240,11 @@
       the relevant provider where technically applicable.</li>
     </ul>
 
-    <h2>12. Children's privacy</h2>
+    <h2>13. Children's privacy</h2>
     <p>BabyCam is a tool for parents and guardians. It is not directed at children as users and does not
     knowingly collect personal information from children. The camera simply serves the caregiver.</p>
 
-    <h2>13. Changes to this policy</h2>
+    <h2>14. Changes to this policy</h2>
     <p>We may update this policy as the app evolves; material changes will be reflected by the "Last
     updated" date above.</p>
   </div>
