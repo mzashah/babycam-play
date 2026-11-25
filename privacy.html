@@ -55,7 +55,7 @@
 <div class="wrap">
   <div class="sheet">
     <h1>Privacy Policy</h1>
-    <p class="meta">Last updated: 3 November 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
+    <p class="meta">Last updated: 25 November 2026 · Play Store app: <strong>BabyCam</strong> (<code>com.mzashah.babycam</code>) · Developer: Zuhaib Ali Shah</p>
 
     <div class="callout">
       <strong>In short:</strong> BabyCam turns two of your own phones into a baby monitor. Live video and
@@ -84,8 +84,9 @@
       <li><strong>Video calls:</strong> during a video call the parent's camera and microphone are also
       sent to the baby device over the same encrypted peer-to-peer path. Nothing about a call is
       recorded or stored by us.</li>
-      <li><strong>Recording on the baby phone (optional):</strong> only after it is allowed on the baby
-      phone itself, a connected parent can start a recording there. Clips are saved only in the
+      <li><strong>Recording on the baby phone:</strong> "Allow recording on this phone" is on by default
+      (a parent can turn it off from the parent phone, and it can be turned off on the baby phone). A connected
+      parent can start a recording there. Clips are saved only in the
       app's private storage <strong>on the baby phone</strong> (with a visible recording notification and
       a Stop button), and a parent can download them over the encrypted peer-to-peer connection.
       Recordings are never uploaded to us or to any cloud.</li>
@@ -104,6 +105,28 @@
       <li>The chime is generated on the baby device; no audio files are uploaded.</li>
       <li><strong>Cry alerts</strong> are detected on the baby device; only a short alert message is
       sent to the parent — no audio is uploaded.</li>
+    </ul>
+
+    <h2>3a. Parent control of the baby phone (optional)</h2>
+    <p>Parent control is <strong>off until a parent turns it on</strong> on the baby phone (behind the
+    BabyCam PIN). It lets a paired parent see and manage the baby phone. Everything below travels only
+    between your own paired phones over the same encrypted connection — <strong>nothing is uploaded to us
+    or stored on any server</strong>.</p>
+    <ul>
+      <li><strong>Screen viewing:</strong> the baby phone's screen is shared live with the parent using
+      Android's screen-capture permission (Android shows its own "Start now" prompt and a notification
+      "A parent can view this screen" while it is available). The screen is never recorded or stored.</li>
+      <li><strong>Remote control:</strong> with Android's Accessibility service turned on for BabyCam, the
+      parent can press Back / Home / Lock and tap, swipe and type on the baby phone while viewing its screen.
+      BabyCam uses Accessibility only for these actions and to notice which app is open (to apply the
+      parent's app rules); it does not read messages or passwords.</li>
+      <li><strong>Apps &amp; screen time:</strong> with Usage access, the baby phone shows the parent today's
+      app list and minutes per app, and applies the parent's rules (pause all, block, daily limits, School and
+      Bedtime times, pause new apps). A child can ask for +5 or +15 minutes; the parent allows or denies it.
+      A short daily summary (21:00) and alerts (new app installed, protection turned off) go to the parent.</li>
+      <li><strong>Uninstall protection:</strong> Android's device administrator lets BabyCam ask for
+      confirmation before it is removed and tells the parent if protection is turned off.</li>
+      <li>App names, minutes and rules stay on the two phones; the parent can turn any part off at any time.</li>
     </ul>
 
     <h2>4. Pairing &amp; connection data</h2>
@@ -140,6 +163,12 @@
     its FCM registration token with the paired baby device (up to three parent devices are kept, only on
     that baby device). When someone starts a video call on the baby phone, it uses the same Cloudflare
     Worker to send a push that opens the call on the parent phone. The token is used for nothing else.</p>
+    <p><strong>Calls from the parent and automatic answering:</strong> a parent can also call the baby phone
+    from the device list. If BabyCam is not running there (for example after a restart), the same Worker sends
+    a push that rings the baby phone. "Open video calls automatically" is on by default (a parent can turn it
+    off): with it on, the call opens by itself; otherwise someone taps Answer. Parent-control alerts use the
+    same Worker with a content-free "an alert is waiting" push — the alert itself is only delivered over the
+    encrypted connection.</p>
 
     <h2>6. App lock</h2>
     <ul>
@@ -212,6 +241,10 @@
       <tr><td>Home-screen widget / quick-settings tile (optional)</td><td>One-tap "Call parent" from the baby phone. No extra data.</td></tr>
       <tr><td>Storage on Android 9 and earlier</td><td>Save user-requested recordings or snapshots to the device gallery</td></tr>
       <tr><td>Biometric</td><td>Optional app lock (stays on device)</td></tr>
+      <tr><td>Accessibility service (optional, Parent control)</td><td>Parent's Back / Home / Lock, tap, swipe and type on the baby phone, and applying app rules. Not used to read your content.</td></tr>
+      <tr><td>Screen capture (optional, Parent control)</td><td>Show the baby phone's screen live to the paired parent. Never recorded.</td></tr>
+      <tr><td>Usage access (optional, Parent control)</td><td>Today's app list and minutes for the parent, and app limits</td></tr>
+      <tr><td>Device administrator (optional, Parent control)</td><td>Uninstall protection</td></tr>
     </table></div>
 
     <h2>11. Third-party services</h2>
